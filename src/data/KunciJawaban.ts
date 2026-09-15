@@ -10,7 +10,7 @@ export const kunciJawaban = {
     },
     {
       answer: "BCW",
-      aliases: ["BSD Indicator", "BCW"],
+      aliases: ["BSD Indicator", "BSD"],
     },
     {
       answer: "Glass Holder",
@@ -46,7 +46,7 @@ export const kunciJawaban = {
     },
     {
       answer: "S/R Lens",
-      aliases: ["SR Lens", "S/R Lamp"],
+      aliases: ["SR Lens", "S/R Lamp", "SR Lamp"],
     },
     {
       answer: "S/R PCB S/A",
