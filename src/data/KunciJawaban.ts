@@ -1,84 +1,123 @@
 export const kunciJawaban = {
   part: [
     {
-      answer: "connector",
-      aliases: ["connector"],
+      answer: "OS View Rear Mirror",
+      aliases: ["OS View Rear Mirror"],
     },
     {
-      answer: "wire polos",
-      aliases: ["wire polos"],
+      answer: "Glass",
+      aliases: ["Glass"],
     },
     {
-      answer: "rod",
-      aliases: ["rod"],
+      answer: "BCW",
+      aliases: ["BSD Indicator", "BCW"],
     },
     {
-      answer: "s/r lens assy",
-      aliases: ["s/r lens assy", "sr lens assy"],
+      answer: "Glass Holder",
+      aliases: ["Holder Glass"],
     },
     {
-      answer: "housing sr lens",
-      aliases: ["housing sr lens"],
+      answer: "Glass Actuator",
+      aliases: ["Actuator Glass"],
     },
     {
-      answer: "damper spring",
-      aliases: ["damper spring"],
+      answer: "Housing Cover (SVM)",
+      aliases: ["Housing Cover"],
     },
     {
-      answer: "glass",
-      aliases: ["glass"],
+      answer: "Frame Bracket",
+      aliases: ["Frame Bracket (P/F)"],
     },
     {
-      answer: "pad",
-      aliases: ["pad"],
+      answer: "Power Folding Actuator",
+      aliases: ["Actuator Power Folding", "Actuator PF", "Actuator P/F"],
     },
     {
-      answer: "actuator",
-      aliases: ["actuator", "aktuator"],
+      answer: "Housing (SVM)",
+      aliases: ["Housing", "Housing SVM"],
     },
     {
-      answer: "bracket",
-      aliases: ["bracket", "brecket", "brecked"],
+      answer: "Scalp",
+      aliases: ["Scalp"],
     },
     {
-      answer: "glass actuator",
-      aliases: ["glass actuator", "glass aktuator"],
+      answer: "Scalp Cap",
+      aliases: ["Cap Scalp"],
     },
     {
-      answer: "lower cap",
-      aliases: ["lower cap", "cap bawah"],
+      answer: "S/R Lens",
+      aliases: ["SR Lens", "S/R Lamp"],
     },
     {
-      answer: "upper cap",
-      aliases: ["upper cap", "cap atas"],
+      answer: "S/R PCB S/A",
+      aliases: ["SR PCB S/A", "S/R PCB", "PCB"],
     },
     {
-      answer: "camera",
-      aliases: ["camera", "kamera"],
+      answer: "S/R Housing",
+      aliases: ["SR Housing", "Housing", "S/R Housing S/R", "S/R Housing SR"],
     },
     {
-      answer: "sr lens",
-      aliases: ["sr lens"],
+      answer: "Base Cover",
+      aliases: ["Mirror Base Cover"],
     },
     {
-      answer: "sr lamp",
-      aliases: ["sr lamp"],
+      answer: "Base (P/F, SVM)",
+      aliases: ["Base P/F", "Base SVM", "Base PF"],
     },
     {
-      answer: "housing",
-      aliases: ["housing"],
+      answer: "PAD",
+      aliases: ["PAD ELECTRIC", "PAD ELEC", "PAD SVM"],
     },
     {
-      answer: "scalp",
-      aliases: ["scalp"],
+      answer: "Base Upper Cap",
+      aliases: ["Upper Cap", "Cap Atas"],
     },
     {
-      answer: "mirror base",
+      answer: "Base Lower Cap",
       aliases: [
-        "mirror base",
-        "miror base",
-        "mirorr base",
+        "Lower Cap",
+        "Cap Bawah",
       ],
+    },
+      {
+      answer: "Wire S/A",
+      aliases: ["Wire", "Wire SA"],
+    },
+    {
+      answer: "SVM Camera",
+      aliases: ["Camera SVM", "Camera"],
+    },
+    {
+      answer: "Wire Fixing Tie",
+      aliases: ["Fixing Tie Wire", "Wire Tie", "Wire Fixing"],
+    },
+    {
+      answer: "T/Screw 5X12",
+      aliases: ["Screw 5X12"],
+    },
+    {
+      answer: "T/Screw 3X20",
+      aliases: ["T Screw 3X20"],
+    },
+    {
+      answer: "T/Screw 3X8",
+      aliases: ["Screw 3X8"],
+    },
+    {
+      answer: "M/Screw 5X12",
+      aliases: ["M Screw 5X12"],
+    },
+    {
+      answer: "Stud Bolt",
+      aliases: ["Stud Bolt"],
+    },
+    {
+      answer: "Flocking Tape",
+      aliases: ["Tape Flocking", "Tape"],
+    },
+    {
+      answer: "Main Connector",
+      aliases: ["Connector Utama", "Connector"],
     },
   ],
 };
