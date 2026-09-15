@@ -34,7 +34,7 @@ export const kunciJawaban = {
     },
     {
       answer: "Housing (SVM)",
-      aliases: ["Housing", "Housing SVM"], "Housing (SVM)",
+      aliases: ["Housing", "Housing SVM", "Housing (SVM)"]
     },
     {
       answer: "Scalp",
@@ -118,7 +118,7 @@ export const kunciJawaban = {
     },
     {
       answer: "Main Connector",
-      aliases: ["Connector Utama", "Connector" "Main Connector"],
+      aliases: ["Connector Utama", "Connector", "Main Connector"],
     },
   ],
 };
