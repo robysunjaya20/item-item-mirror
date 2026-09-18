@@ -6,11 +6,11 @@ export const kunciJawaban = {
     },
     {
       answer: "Glass",
-      aliases: ["Glass"],
+      aliases: ["Glass", "Kaca"],
     },
     {
       answer: "BCW",
-      aliases: ["BSD Indicator", "BSD", "BCW"],
+      aliases: ["BSD Indicator", "BSD", "BCW", "BCW Indicator"],
     },
     {
       answer: "Glass Holder",
@@ -22,7 +22,7 @@ export const kunciJawaban = {
     },
     {
       answer: "Housing Cover (SVM)",
-      aliases: ["Housing Cover", "Housing Cover (SVM)"],
+      aliases: ["Housing Cover", "Housing Cover (SVM)", "Cover Housing"],
     },
     {
       answer: "Frame Bracket",
@@ -50,7 +50,7 @@ export const kunciJawaban = {
     },
     {
       answer: "S/R PCB S/A",
-      aliases: ["SR PCB S/A", "S/R PCB", "PCB", "S/R PCB S/A"],
+      aliases: ["SR PCB S/A", "S/R PCB", "PCB", "S/R PCB S/A", "SR PCB SA"],
     },
     {
       answer: "S/R Housing",
@@ -62,7 +62,7 @@ export const kunciJawaban = {
     },
     {
       answer: "Base (P/F, SVM)",
-      aliases: ["Base P/F", "Base SVM", "Base PF", "Base (P/F, SVM)"],
+      aliases: ["Base P/F", "Base SVM", "Base PF", "Base (P/F, SVM)", "Base PF, SVM"],
     },
     {
       answer: "PAD",
