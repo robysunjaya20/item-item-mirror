@@ -66,7 +66,7 @@ export const metadata: Metadata = {
 
     images: [
       {
-        url: "/og-image.png",
+        url: "/og_bei.png",
         width: 1200,
         height: 630,
         alt: "Item - Item Mirror | Quality Training",
