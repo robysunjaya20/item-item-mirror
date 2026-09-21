@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
 const GOOGLE_APPS_SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbzZrieHuBab0DzmRpGlupXrCMYuzTSwivqGZ-Cvu27pp6Y9d29ow45EV9PyM0uCbySQKA/exec";
+  "https://script.google.com/macros/s/AKfycbyycIm8OSbGMKqpkLo2AEIDHe-wLDHcwqCN1XUG2CaGPH7_Ocv5hnaktmETY_nxtCKYcg/exec";
 
 export async function POST(request: Request) {
   try {
@@ -9,6 +9,9 @@ export async function POST(request: Request) {
 
     console.log("Data diterima dari website:", data);
 
+    // ==========================================
+    // VALIDASI DATA
+    // ==========================================
 
     if (
       !data.nama ||
@@ -27,6 +30,10 @@ export async function POST(request: Request) {
       );
     }
 
+    // ==========================================
+    // VALIDASI TEST TYPE
+    // ==========================================
+
     if (
       data.testType !== "pre-test" &&
       data.testType !== "post-test"
@@ -41,6 +48,10 @@ export async function POST(request: Request) {
         }
       );
     }
+
+    // ==========================================
+    // BUAT PAYLOAD
+    // ==========================================
 
     const payload = {
       nama: String(data.nama).trim(),
@@ -67,6 +78,10 @@ export async function POST(request: Request) {
       payload
     );
 
+    // ==========================================
+    // KIRIM KE GOOGLE APPS SCRIPT
+    // ==========================================
+
     const response = await fetch(
       GOOGLE_APPS_SCRIPT_URL,
       {
@@ -85,6 +100,10 @@ export async function POST(request: Request) {
       }
     );
 
+    // ==========================================
+    // BACA RESPONSE GOOGLE APPS SCRIPT
+    // ==========================================
+
     const responseText = await response.text();
 
     console.log(
@@ -96,6 +115,10 @@ export async function POST(request: Request) {
       "Response Apps Script:",
       responseText
     );
+
+    // ==========================================
+    // CEK HTTP ERROR
+    // ==========================================
 
     if (!response.ok) {
       console.error(
@@ -117,6 +140,10 @@ export async function POST(request: Request) {
       );
     }
 
+    // ==========================================
+    // CEK RESPONSE JSON DARI APPS SCRIPT
+    // ==========================================
+
     let appsScriptResult: {
       success?: boolean;
       message?: string;
@@ -131,6 +158,11 @@ export async function POST(request: Request) {
         "Response Apps Script bukan JSON."
       );
     }
+
+    // ==========================================
+    // JIKA APPS SCRIPT SECARA EKSPLISIT
+    // MENGEMBALIKAN success: false
+    // ==========================================
 
     if (
       appsScriptResult &&
@@ -153,6 +185,10 @@ export async function POST(request: Request) {
         }
       );
     }
+
+    // ==========================================
+    // BERHASIL
+    // ==========================================
 
     console.log(
       "================================"
