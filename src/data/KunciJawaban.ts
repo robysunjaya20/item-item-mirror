@@ -1,10 +1,6 @@
 export const kunciJawaban = {
   part: [
     {
-      answer: "OS View Rear Mirror",
-      aliases: ["OS View Rear Mirror"],
-    },
-    {
       answer: "Glass",
       aliases: ["Glass", "Kaca"],
     },
