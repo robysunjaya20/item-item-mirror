@@ -73,6 +73,7 @@ export const kunciJawaban = {
       aliases: [
         "Lower Cap",
         "Cap Bawah",
+        "Base Lower Cap"
       ],
     },
       {
