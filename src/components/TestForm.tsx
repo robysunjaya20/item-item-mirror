@@ -27,15 +27,23 @@ function splitAnswers(answer: string) {
 function checkPartAnswer(answer: string) {
   const answers = splitAnswers(answer);
 
-  const foundParts = kunciJawaban.part.filter((part) => {
-    return answers.some((userAnswer) => {
-      return part.aliases.some((alias) => {
-        return normalizeText(alias) === userAnswer;
-      });
+  const foundPartIndexes = new Set<number>();
+
+  answers.forEach((userAnswer) => {
+    const partIndex = kunciJawaban.part.findIndex((part) => {
+      return part.aliases.some(
+        (alias) => normalizeText(alias) === userAnswer
+      );
     });
+
+    if (partIndex !== -1) {
+      foundPartIndexes.add(partIndex);
+    }
   });
 
-  return foundParts;
+  return kunciJawaban.part.filter((_, index) =>
+    foundPartIndexes.has(index)
+  );
 }
 
 export default function TestForm({ type }: TestFormProps) {
