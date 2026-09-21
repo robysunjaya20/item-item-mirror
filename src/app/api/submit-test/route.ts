@@ -5,13 +5,10 @@ const GOOGLE_APPS_SCRIPT_URL =
 
 export async function POST(request: Request) {
   try {
-
     const data = await request.json();
 
-    console.log(
-      "Data diterima dari website:",
-      data
-    );
+    console.log("Data diterima dari website:", data);
+
 
     if (
       !data.nama ||
@@ -46,14 +43,14 @@ export async function POST(request: Request) {
     }
 
     const payload = {
-      nama: String(data.nama),
-      nik: String(data.nik),
-      department: String(data.department),
+      nama: String(data.nama).trim(),
+      nik: String(data.nik).trim(),
+      department: String(data.department).trim(),
 
       testType: String(data.testType),
 
-      jawaban1: data.jawaban1 || "",
-      jawaban2: data.jawaban2 || "",
+      jawaban1: String(data.jawaban1 || "").trim(),
+      jawaban2: String(data.jawaban2 || "").trim(),
 
       jumlahPartBenar:
         Number(data.jumlahPartBenar) || 0,
@@ -87,17 +84,8 @@ export async function POST(request: Request) {
         redirect: "follow",
       }
     );
-    
-    let responseText = "";
 
-    try {
-      responseText = await response.text();
-    } catch (error) {
-      console.warn(
-        "Tidak bisa membaca response Apps Script:",
-        error
-      );
-    }
+    const responseText = await response.text();
 
     console.log(
       "Status Apps Script:",
@@ -109,11 +97,9 @@ export async function POST(request: Request) {
       responseText
     );
 
-    if (
-      response.status >= 400
-    ) {
+    if (!response.ok) {
       console.error(
-        "Google Apps Script mengembalikan error:",
+        "Google Apps Script HTTP Error:",
         response.status,
         responseText
       );
@@ -123,6 +109,44 @@ export async function POST(request: Request) {
           success: false,
           message:
             "Google Apps Script mengembalikan error.",
+          detail: responseText,
+        },
+        {
+          status: 500,
+        }
+      );
+    }
+
+    let appsScriptResult: {
+      success?: boolean;
+      message?: string;
+    } | null = null;
+
+    try {
+      appsScriptResult = JSON.parse(responseText);
+    } catch {
+      // Jika Apps Script tidak mengembalikan JSON,
+      // kita tetap lanjut berdasarkan HTTP status.
+      console.warn(
+        "Response Apps Script bukan JSON."
+      );
+    }
+
+    if (
+      appsScriptResult &&
+      appsScriptResult.success === false
+    ) {
+      console.error(
+        "Apps Script gagal:",
+        appsScriptResult
+      );
+
+      return NextResponse.json(
+        {
+          success: false,
+          message:
+            appsScriptResult.message ||
+            "Google Apps Script gagal menyimpan data.",
         },
         {
           status: 500,
@@ -135,7 +159,7 @@ export async function POST(request: Request) {
     );
 
     console.log(
-      "DATA BERHASIL DISIMPAN"
+      "DATA BERHASIL DIKIRIM KE GOOGLE SHEET"
     );
 
     console.log(
@@ -146,6 +170,7 @@ export async function POST(request: Request) {
       {
         success: true,
         message:
+          appsScriptResult?.message ||
           "Data berhasil disimpan.",
       },
       {
@@ -154,7 +179,6 @@ export async function POST(request: Request) {
     );
 
   } catch (error) {
-
     console.error(
       "================================"
     );
