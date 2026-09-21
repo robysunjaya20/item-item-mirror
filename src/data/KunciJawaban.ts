@@ -54,7 +54,7 @@ export const kunciJawaban = {
     },
     {
       answer: "S/R Housing",
-      aliases: ["SR Housing", "Housing", "S/R Housing S/R", "S/R Housing SR", "S/R Housing"],
+      aliases: ["SR Housing", "S/R Housing S/R", "S/R Housing SR", "S/R Housing"],
     },
     {
       answer: "Base Cover",
