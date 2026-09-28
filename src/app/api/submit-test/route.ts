@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
 const GOOGLE_APPS_SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbzCrIyCa81inm_AwTl_heRGTYNEWtc-9inrW9QTVmmzYarXVAqq1v1hEQJzOrjEXqDXlA/exec";
+  "https://script.google.com/macros/s/AKfycbz4RqF5yz93eqwv0Ixt5iovX9G-Fis9N91juHc76NUhC61xppDfTwdQBUlQ_brfBVxHRA/exec";
 
 export async function POST(request: Request) {
   try {
