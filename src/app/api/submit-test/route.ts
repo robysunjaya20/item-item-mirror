@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
 const GOOGLE_APPS_SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbyycIm8OSbGMKqpkLo2AEIDHe-wLDHcwqCN1XUG2CaGPH7_Ocv5hnaktmETY_nxtCKYcg/exec";
+  "https://script.google.com/macros/s/AKfycbz0fgP4-6NJNKrniuempkRN9cqgmjn47kHRfhndFLeqEYpc3P9SR5ffeS8NCym65Elgow/exec";
 
 export async function POST(request: Request) {
   try {
@@ -9,14 +9,11 @@ export async function POST(request: Request) {
 
     console.log("Data diterima dari website:", data);
 
-    // ==========================================
-    // VALIDASI DATA
-    // ==========================================
-
     if (
       !data.nama ||
       !data.nik ||
       !data.department ||
+      !data.email ||
       !data.testType
     ) {
       return NextResponse.json(
@@ -29,10 +26,6 @@ export async function POST(request: Request) {
         }
       );
     }
-
-    // ==========================================
-    // VALIDASI TEST TYPE
-    // ==========================================
 
     if (
       data.testType !== "pre-test" &&
@@ -49,16 +42,15 @@ export async function POST(request: Request) {
       );
     }
 
-    // ==========================================
-    // BUAT PAYLOAD
-    // ==========================================
+    const score = Number(data.score) || 0;
 
     const payload = {
       nama: String(data.nama).trim(),
       nik: String(data.nik).trim(),
       department: String(data.department).trim(),
+      email: String(data.email).trim(),
 
-      testType: String(data.testType),
+      testType: String(data.testType).trim(),
 
       jawaban1: String(data.jawaban1 || "").trim(),
       jawaban2: String(data.jawaban2 || "").trim(),
@@ -69,42 +61,27 @@ export async function POST(request: Request) {
       totalPart:
         Number(data.totalPart) || 0,
 
-      score:
-        Number(data.score) || 0,
+      score,
     };
 
-    console.log(
-      "Mengirim ke Google Apps Script:",
-      payload
-    );
-
-    // ==========================================
-    // KIRIM KE GOOGLE APPS SCRIPT
-    // ==========================================
+    console.log("Payload ke Google Apps Script:", payload);
 
     const response = await fetch(
       GOOGLE_APPS_SCRIPT_URL,
       {
         method: "POST",
-
         headers: {
           "Content-Type":
             "text/plain;charset=utf-8",
         },
-
         body: JSON.stringify(payload),
-
         cache: "no-store",
-
         redirect: "follow",
       }
     );
 
-    // ==========================================
-    // BACA RESPONSE GOOGLE APPS SCRIPT
-    // ==========================================
-
-    const responseText = await response.text();
+    const responseText =
+      await response.text();
 
     console.log(
       "Status Apps Script:",
@@ -115,10 +92,6 @@ export async function POST(request: Request) {
       "Response Apps Script:",
       responseText
     );
-
-    // ==========================================
-    // CEK HTTP ERROR
-    // ==========================================
 
     if (!response.ok) {
       console.error(
@@ -140,29 +113,23 @@ export async function POST(request: Request) {
       );
     }
 
-    // ==========================================
-    // CEK RESPONSE JSON DARI APPS SCRIPT
-    // ==========================================
-
     let appsScriptResult: {
       success?: boolean;
       message?: string;
-    } | null = null;
+      testType?: string;
+      sheet?: string;
+      score?: number;
+      certificateStatus?: string;
+    } = {};
 
     try {
-      appsScriptResult = JSON.parse(responseText);
+      appsScriptResult =
+        JSON.parse(responseText);
     } catch {
-      // Jika Apps Script tidak mengembalikan JSON,
-      // kita tetap lanjut berdasarkan HTTP status.
       console.warn(
         "Response Apps Script bukan JSON."
       );
     }
-
-    // ==========================================
-    // JIKA APPS SCRIPT SECARA EKSPLISIT
-    // MENGEMBALIKAN success: false
-    // ==========================================
 
     if (
       appsScriptResult &&
@@ -186,47 +153,46 @@ export async function POST(request: Request) {
       );
     }
 
-    // ==========================================
-    // BERHASIL
-    // ==========================================
-
     console.log(
-      "================================"
-    );
-
-    console.log(
-      "DATA BERHASIL DIKIRIM KE GOOGLE SHEET"
-    );
-
-    console.log(
-      "================================"
+      "Data berhasil dikirim ke Google Sheet."
     );
 
     return NextResponse.json(
       {
         success: true,
+
         message:
-          appsScriptResult?.message ||
+          appsScriptResult.message ||
           "Data berhasil disimpan.",
+
+        testType:
+          appsScriptResult.testType ||
+          data.testType,
+
+        sheet:
+          appsScriptResult.sheet ||
+          null,
+
+        score:
+          appsScriptResult.score ??
+          score,
+
+        certificateStatus:
+          appsScriptResult.certificateStatus ||
+          null,
+
+        certificateSent: false,
+
+        certificateUrl: null,
       },
       {
         status: 200,
       }
     );
-
   } catch (error) {
     console.error(
-      "================================"
-    );
-
-    console.error(
-      "ERROR SIMPAN DATA:"
-    );
-
-    console.error(error);
-
-    console.error(
-      "================================"
+      "Submit test error:",
+      error
     );
 
     return NextResponse.json(

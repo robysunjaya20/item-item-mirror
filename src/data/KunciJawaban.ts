@@ -90,19 +90,19 @@ export const kunciJawaban = {
     },
     {
       answer: "T/Screw 5X12",
-      aliases: ["Screw 5X12", "T/Screw 5X12"],
+      aliases: ["T/Screw 5X12", "T Screw 5X12"],
     },
     {
       answer: "T/Screw 3X20",
-      aliases: ["T Screw 3X20", "T/Screw 3X20"],
+      aliases: ["T Screw 3X20", "T/Screw 3X20", "Screw 3X20"],
     },
     {
       answer: "T/Screw 3X8",
-      aliases: ["Screw 3X8", "T/Screw 3X8"],
+      aliases: ["Screw 3X8", "T/Screw 3X8", "T Screw 3X8"],
     },
     {
       answer: "M/Screw 5X12",
-      aliases: ["M Screw 5X12", "M/Screw 5X12"],
+      aliases: ["M Screw 5X12", "M/Screw 5X12", "Screw 5X12"],
     },
     {
       answer: "Stud Bolt",
